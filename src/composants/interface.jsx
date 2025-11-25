@@ -9,7 +9,7 @@ let Interface =()=>{
     const handleSubmit = (e)=>{
         e.preventDefault()
 
-        axios.post('https://totolist-nu.vercel.app/taches', formData)
+        axios.post('https://todolist-back-iota.vercel.app/taches', formData)
         .then(response=>{
             console.log(response)
             setFormData({ tache: "" })
@@ -53,9 +53,10 @@ let Interface =()=>{
                                 <input type="submit"  name="valider" value="Ajouter"  className="border-2 bg-black text-white border-black w-[100px] h-[45px] rounded-2xl cursor-pointer"/>
                                 <input type="reset" name="annuler" value="Supprimer" onClick={handleReset} className="border-2 bg-black text-white border-black w-[100px] h-[45px] rounded-2xl cursor-pointer"/>
                             </div>
-                            <div className=" text-2xl font-bold border-black h-[100px] flex justify-center items-center">
-                                {message}
-                            </div>
+                            <div className={`text-2xl font-bold h-[100px] flex justify-center items-center 
+                                    ${message.includes("supprimée") ? "text-red-600" : "text-green-600"}`}>
+                                    {message}
+</div>
 
                             
                                  

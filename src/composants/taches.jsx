@@ -32,7 +32,7 @@ let Taches= ()=>{
          const validerTache = (id) => {
             axios.delete(`https://todolistback-8va6.onrender.com/taches/${id}`)
             .then(() => setListe(liste.filter(li => li.id !== id)))
-            .catch(err => console.error(err));
+            .catch(err => console.error(err))
 };
 
       

@@ -13,7 +13,7 @@ let Interface =()=>{
         .then(response=>{
             console.log(response)
             setFormData({ tache: "" })
-            setMessage("tache ajouté ")
+            setMessage("tâche ajoutée ")
         })
         .catch((error)=>{
             if(error){
@@ -33,7 +33,7 @@ let Interface =()=>{
 
     const handleReset = () => {
     setFormData({ tache: "" });
-    setMessage("Formulaire réinitialisé");
+    setMessage("Tâche supprimée");
   };
 
 
@@ -50,9 +50,14 @@ let Interface =()=>{
                             </div>
 
                             <div className=" flex justify-end p-7 gap-10 items-center  border-black h-[50px] mt-15">
-                                <input type="submit"  name="valider" value="Ajouer"  className="border-2 bg-black text-white border-black w-[100px] h-[45px] rounded-2xl cursor-pointer"/>
+                                <input type="submit"  name="valider" value="Ajouter"  className="border-2 bg-black text-white border-black w-[100px] h-[45px] rounded-2xl cursor-pointer"/>
                                 <input type="reset" name="annuler" value="Supprimer" onClick={handleReset} className="border-2 bg-black text-white border-black w-[100px] h-[45px] rounded-2xl cursor-pointer"/>
                             </div>
+                            <div className=" text-2xl font-bold border-black h-[100px] flex justify-center items-center">
+                                {message}
+                            </div>
+
+                            
                                  
                             
                                 </form>

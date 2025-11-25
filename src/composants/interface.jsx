@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from 'axios'
+import Taches from "./taches";
 
 let Interface =()=>{
 
@@ -7,9 +8,9 @@ let Interface =()=>{
     const [message, setMessage]= useState("")
     
     const handleSubmit = (e)=>{
-        e.preventDefault()
+       
 
-        axios.post('https://todolist-back-iota.vercel.app/taches', formData)
+        axios.post('https://todolistback-8va6.onrender.com/taches', formData)
         .then(response=>{
             console.log(response)
             setFormData({ tache: "" })
@@ -38,7 +39,7 @@ let Interface =()=>{
 
 
     return <>
-                <div className="w-full h-screen border-2 border-black flex justify-center items-center">
+                <div className="w-full h-screen border-2 border-black flex justify-around items-center">
                     <div className="border-2 border-black w-[500px] h-[500px] rounded-2xl flex flex-col gap-y-20">
                             <div className="border-2 bg-black text-white h-[100px] rounded-t-2xl flex justify-center items-center text-4xl font-bold">
                                 <p>Ma TodoList</p>
@@ -64,6 +65,9 @@ let Interface =()=>{
                                 </form>
                          
 
+                    </div>
+                    <div>
+                        <Taches />
                     </div>
                 </div>
     

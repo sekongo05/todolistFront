@@ -3,17 +3,16 @@ import axios from 'axios'
 
 let Interface =()=>{
 
-    const [formData, setFormData]= useState({
-        tache: ""
-    })
+    const [formData, setFormData]= useState({tache: "" })
     const [message, setMessage]= useState("")
+    
     const handleSubmit = (e)=>{
         e.preventDefault()
 
-        axios.post('http://totolist-nu.vercel.app/taches', formData)
+        axios.post('https://totolist-nu.vercel.app/taches', formData)
         .then(response=>{
             console.log(response)
-            setFormData(response.data)
+            setFormData({ tache: "" })
             setMessage("tache ajouté ")
         })
         .catch((error)=>{
@@ -32,6 +31,10 @@ let Interface =()=>{
         console.log( e.target.value)
     }
 
+    const handleReset = () => {
+    setFormData({ tache: "" });
+    setMessage("Formulaire réinitialisé");
+  };
 
 
     return <>
@@ -48,7 +51,7 @@ let Interface =()=>{
 
                             <div className=" flex justify-end p-7 gap-10 items-center  border-black h-[50px] mt-15">
                                 <input type="submit"  name="valider" value="Ajouer"  className="border-2 bg-black text-white border-black w-[100px] h-[45px] rounded-2xl cursor-pointer"/>
-                                <input type="reset" name="annuler" value="Supprimer" className="border-2 bg-black text-white border-black w-[100px] h-[45px] rounded-2xl cursor-pointer"/>
+                                <input type="reset" name="annuler" value="Supprimer" onClick={handleReset} className="border-2 bg-black text-white border-black w-[100px] h-[45px] rounded-2xl cursor-pointer"/>
                             </div>
                                  
                             

@@ -30,11 +30,9 @@ let Taches= ()=>{
          };
 
          const validerTache = (id) => {
-            axios.put(`https://todolistback-8va6.onrender.com/taches/${id}/valider`)
-        .then(() => {
-        setListe(liste.map(li => li.id === id ? { ...li, done: true } : li));
-        })
-    .catch(err => console.error(err));
+            axios.delete(`https://todolistback-8va6.onrender.com/taches/${id}`)
+            .then(() => setListe(liste.filter(li => li.id !== id)))
+            .catch(err => console.error(err));
 };
 
       
@@ -44,14 +42,14 @@ let Taches= ()=>{
     return <>
             <div className=" border-black w-[500px] h-[500px] ">
                 <div className=" border-black justify-centerflex flex items-center text-4xl font-bold mb-9">
-                    <p className="flex justify-center items-center w-full"> Mes tâches </p>
+                    <p className="flex justify-center items-center w-full cursor-pointer" > Mes tâches </p>
                 </div>
                 <div className="w-full border-2 border-black  rounded-2xl  overflow-scroll">
 
                 
                 <ul>
                     {liste.map((li)=>(
-                        <li key={li.id} className="w-full flex justify-around p-9">
+                        <li key={li.id} className="w-full flex  justify-around p-9">
                             {li.id}-  {li.tache} {li.done ? "ok" : ""}
                          <button className=" bg-green-600  text-white border-black w-[100px] h-[35px] rounded-2xl cursor-pointer" onClick={() => validerTache(li.id)}>Valider</button>
 

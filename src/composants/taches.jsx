@@ -2,38 +2,35 @@ import { useState } from "react";
 import axios from 'axios'
 import { useEffect } from "react";
 
-let Taches= ()=>{
-            const [liste,setListe]= useState([])
+    let Taches= ()=>{
+                const [liste,setListe]= useState([])
 
 
-        useEffect(()=>{
+            useEffect(()=>{
 
-            axios.get('https://todolistback-8va6.onrender.com/taches/')
-            .then(response=>{
-                console.log(response)
+                axios.get('https://todolistback-8va6.onrender.com/taches/')
+                .then(response=>{
+                    console.log('les reponses sont:',response)
+                    
+                    setListe(response.data.resultat);
                 
-                setListe(response.data.resultat);
-            
-            })
-            .catch((err)=>{
-                if(err){
-                    console.log(err)
+                })
+                .catch((err)=>{
+                    if(err){
+                        console.log(err)
 
-                }
-            })
-        }, [])
-            
-        const suppTache = (id)=>{
-            axios.delete(`https://todolistback-8va6.onrender.com/taches/${id}`)
-            .then(() => setListe(liste.filter(li => li.id !== id)))
-            .catch(err => console.error(err));
-         };
+                    }
+                })
+            }, [])
+                
+            const suppTache = (id)=>{
+                axios.delete(`https://todolistback-8va6.onrender.com/taches/${id}`)
+                .then(() => setListe(liste.filter(li => li.id !== id)))
+                .catch(err => console.error(err));
+            };
 
-         const validerTache = (id) => {
-            axios.delete(`https://todolistback-8va6.onrender.com/taches/${id}`)
-            .then(() => setListe(liste.filter(li => li.id !== id)))
-            .catch(err => console.error(err))
-};
+    
+
 
       
 
@@ -44,7 +41,7 @@ let Taches= ()=>{
                 <div className=" border-black justify-centerflex flex items-center text-4xl font-bold mb-9">
                     <p className="flex justify-center items-center w-full cursor-pointer" > Mes tâches </p>
                 </div>
-                <div className="w-full border-2 border-black  rounded-2xl  overflow-scroll">
+                <div className="w-full border-2 border-black  rounded-2xl  overflow-auto">
 
                 
                 <ul>
